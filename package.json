@@ -1,0 +1,19 @@
+{
+    "name": "seleniumexamples",
+    "version": "1.0.0",
+    "description": "Selenium Examples Project",
+    "main": "index.js",
+    "script": {
+        "test": "echo \"Error: no test specifield\" && exite 1"
+    },
+    "author": "Tulagan Norkul",
+    "license": "Mit",
+    "keywords": [],
+    "dependencies": {
+        "@sitespeed.io/edgedriver": "^111.0.1661-41",
+        "assert": "^2.0.0",
+        "chromedriver": "^112.0.0",
+        "geckodriver": "^3.2.0",
+        "selenium-webdriver": "^4.9.0"
+    }
+}

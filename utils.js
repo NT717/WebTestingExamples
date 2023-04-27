@@ -1,6 +1,6 @@
 const {Builder,  By, Key, until} = require("./node_modules/selenium-webdriver");
 const {Options, Driver} = require("./node_modules/selenium-webdriver/chrome");
-function get_chrome() {
+function getChrome() {
     // let driver = new Builder().forBrowser("firefox").build();
     let options = new Options();
     // options.addArguments("load-extension=D:\Dev\Tools\Selenium\webdrivers\chrome_ext\extension_5_5_0_0.crx");
@@ -10,11 +10,11 @@ function get_chrome() {
     return driver;
 }
 
-function get_firefox(){
+function getFirefox(){
     let driver = new Builder().forBrowser("firefox").build();
     return driver;
 }
 
 
-exports.get_chrome = get_chrome;
-exports.get_firefox = get_firefox;
+exports.getChrome = getChrome;
+exports.getFirefox = getFirefox;

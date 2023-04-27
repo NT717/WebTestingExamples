@@ -1,2 +1,4 @@
-const {textbox_fill} = require("./elements/textbox_test");
-textbox_fill();
+const {textboxFill} = require("./elements/textboxTest");
+const {checkBoxClickHome} = require("./elements/checkboxTest");
+// textboxFill();
+checkBoxClickHome();

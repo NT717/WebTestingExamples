@@ -9,7 +9,7 @@ async function textboxFill() {
         await driver.get("https://demoqa.com/text-box");
         
         await driver.findElement(By.id("userName")).sendKeys("SelFullname1", Key.TAB);
-        await driver.findElement(By.id("userEmail")).sendKeys("email1@email.com", Key.TAB);
+        await driver.findElement(By.id("userEmail")).sendKeys("email1@gmail.com", Key.TAB);
         await driver.findElement(By.id("currentAddress")).sendKeys("Current Address1Address1", Key.TAB);
         await driver.findElement(By.id("permanentAddress")).sendKeys("Permanent text 1", Key.TAB);
         await driver.findElement(By.id("submit")).sendKeys(Key.ENTER);
@@ -18,7 +18,7 @@ async function textboxFill() {
         assert.strictEqual(name, "Name:SelFullname1");
 
         let email = await driver.findElement(By.id("email")).getText();
-        assert.strictEqual(email, "Email:email1@email.com");
+        assert.strictEqual(email, "Email:email1@gmail.com");
 
         let currentAddress = await driver(By.id("currentAddress")).getText();
         assert.strictEqual(currentAddress, "Current Address:Current Address1Address1");
@@ -33,7 +33,7 @@ async function textboxFill() {
         console.log("All tests are passed.");
     } finally {
         if (driver != undefined){
-             await driver.quit() 
+            //  await driver.quit() 
         
     }
   }

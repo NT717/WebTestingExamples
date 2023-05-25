@@ -1,4 +1,4 @@
-const { Builder, By, Key, until,locateWith, JavascriptExecutor } = require("selenium-webdriver");
+const { Builder, By, Key, until,locateWith } = require("selenium-webdriver");
 const { NoSuchElementError } = require("selenium-webdriver/lib/error");
 const { getFirefox } = require("../utils");
 const assert = require("assert");
@@ -41,49 +41,15 @@ async function checkBoxClickHome() {
     // assert.doesN
 
     console.log("6. Documents home")
-    await driver.findElement(By.xpath("//label[@for='tree-node-documents']/preceding-sibling::button[1]")).click();
+    await driver.findElement(By.xpath("//label[@for='tree-node-documents']/preceding-sibling::button[2]")).click();
+
+    console.log("")
     
-    console.log("7. WorkSpace home")
-    await driver.findElement(By.xpath("//label[@for='tree-node-workspace']/preceding-sibling::button[1]")).click();
-
-    console.log("8. unChecking WorkSpace home")
-    await driver.findElement(By.xpath("//label[@for='tree-node-workspace']/preceding-sibling::button[1]")).click();
-
-    console.log("9. unChecking Documents home")
-    await driver.findElement(By.xpath("//label[@for='tree-node-documents']/preceding-sibling::button[1]")).click();
-    
-    console.log("10. unChecking Desktop home");
-    await driver.findElement(By.xpath("//label[@for='tree-node-desktop']/preceding-sibling::button[1]")).click();
-
-    console.log("11. unChecking Toggle home")
-    await driver.findElement(By.css("button[title='Toggle']")).click();
-    
-    // console.log("8. Office home")
-    // await driver.findElement(By.xpath("//label[@for='tree-node-office']/preceding-sibling::button[1]")).click();
-
-    // console.log("9. Downloads home")
-    // let downloads = await driver.findElement(By.xpath("//label[@for='tree-node-downloads']/preceding-sibling::button[1]"));
-    // await driver.actions().scroll(0, 0, 0, 0, downloads).perform()
-    // JavascriptExecutor. jse = (JavascriptExecutor)driver;
-    // jse.executeScript("window.scrollBy(0,250)");
-    // driver.findElement(By.css("body")).sendKeys(Key.CONTROL, Key.END);
-    // // downloads.sendKeys(Key.END);
-    // driver.executeScript("window.scrollBy(0,250)");
-    // driver.executeScript("scroll(0, 250);");
-    // driver.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-    // driver.then(function(){
-    //   driver.executeScript("alert('hi');");
-    
-    // })
-    // await downloads.click();
-    // console.log("10. Collapse all home")
-    // await driver.findElement(By.xpath("//button[@title='collapse all']")).click();
-
   } finally {
     if (driver != undefined) {
       // await driver.quit();
     }
-   }
+  }
  }
 exports.checkBoxClickHome = checkBoxClickHome;
 

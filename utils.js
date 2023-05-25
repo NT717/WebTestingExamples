@@ -1,5 +1,5 @@
-const {Builder,  By, Key, until} = require("./node_modules/selenium-webdriver");
-const {Options, Driver} = require("./node_modules/selenium-webdriver/chrome");
+const { Builder, By, Key, until } = require("./node_modules/selenium-webdriver");
+const { Options, Driver } = require("./node_modules/selenium-webdriver/chrome");
 function getChrome() {
     // let driver = new Builder().forBrowser("firefox").build();
     let options = new Options();
@@ -10,11 +10,23 @@ function getChrome() {
     return driver;
 }
 
-function getFirefox(){
+function getFirefox() {
     let driver = new Builder().forBrowser("firefox").build();
     return driver;
 }
 
+const waitFind = (driver, locator) => {
+    return driver.findElement(async () => {
+        await driver.wait(until.elementLocated(locator));
+        return driver.findElement(locator);
+    });
+}
 
-exports.getChrome = getChrome;
-exports.getFirefox = getFirefox;
+const findClick = async function (driver, locator) {
+    let clickable = waitFind(driver, locator);
+    // const actions = driver.actions({ async: true });
+    // await actions.move({origin: clickable}).click().perform();
+    clickable.sendKeys(Key.ENTER);
+}
+
+module.exports = { getChrome, getFirefox, waitFind, findClick };

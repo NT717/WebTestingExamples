@@ -1,41 +1,29 @@
-const {Builder, By, Key, until, locateWith, javaScript} = require("selenium-webdriver");
-// const {NoSuchElementError} = require("selenium-webdriver/lib/error");
-const {getFirefox} = require("../utiles");
-const {assert} = require("assert")
+const {Builder, By, Key, until} = require("selenium-webdriver");
+const {getFirefox} = require("../utils");
+const assert = require("assert");
 
-async function textboxFill() {
+async function brokenLinkClick(){
     let driver = undefined;
 
-try {
-    driver = new Builder().forBrowser("firefox").build();
-    await driver.get("https://demoqa.com/check-box");
+    try{
+        driver = new Builder().forBrowser("firefox").build();
+        await driver.get("https://demoqa.com/broken");
 
-    console.log("All tests are passed")
-    await driver.findElement(By.id("userName")).sendKeys("Jean Pierre", Key.TAB);
-    await driver.findElement(By.id("userEmail")).sendKeys("jp@gmail.com", Key.TAB);
-    await driver.findElement(By.id("courrentAddress")).sendKeys("Courrent Address1Address1",Key.TAB);
-    await driver.findElement(By.id("permanentAddress")).sendKeys("Permanent Text 1",Key.TAB);
-    await driver.findElement(By.id("submit")).sendKeys(Key.ENTER);
+        const validLink = driver.findElement(By.linkText("Click Here for Valid Link"));
+        const linkUrl = validLink.getAttribute("href");
+        const concatLinkUrl = linkUrl.substring( linkUrl.indexOf(":"));
+        console.log("Opening link: " +linkUrl+ "concatLinkUrl: " +concatLinkUrl);
 
-    let name = await driver.findElement(By.id("name")).getText();
-    assert.stricEqual(name, "Name:Jean Pierre");
+        await driver.sendKeys(Key.ENTER);
+        await driver.wait(until.urlIs("https" +concatLinkUrl),1000);
+        console.log(await driver.getCurrentUrl());
+        const currentUrl = driver.getCurrentUrl();
+        const concatCurrentUrl = currentUrl.substring(currentUrl.indexOf(":"));
+        console.log("currentUrl: " +currentUrl+ "concatCurrent: " +concatCurrentUrl);
+        assert.strictEqual(concatLinkUrl, concatCurrentUrl);
+        
 
-    let email = await driver.findElement(By.id("email")).getText();
-    assert.stricEqual(email, "Email:jp@gmail.com");
 
-    let courrenAddress = await driver.findElement(By.id("courrentAddress")).getText();
-    assert.stricEqual(courrenAddress, "CourrentAddress:Courrent Address1Address1");
 
-    let permanentAddress = await driver.findElement(By.id("permanentAddress")).getText();
-    assert.stricEqual(permanentAddress, "PermanentAddress:Permanent Text 1");
-
-    let submit = await driver.findElement(By.id("submit")).getText();
-    assert.stricEqual(submit, "Submit: ENTER");
-
-    console.log("All tests are passed");
-  }finally{
-    if(driver !=undefined){
-        await driver.quit();
     }
-   }
-  }
+}
